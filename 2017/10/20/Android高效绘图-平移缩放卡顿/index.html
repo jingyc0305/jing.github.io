@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>Android高效绘图-平移缩放卡顿 | One Love, One Lifetime | 相信技术的力量.learn once, write everywhere,write once, run anywhere</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="本人新手一枚,第一次写博客,写的不好请勿喷,困扰小弟很久的问题,今天终于解决,这里奉上,供小伙伴借鉴,后面我会奉上从基础手指绘图到平移缩放所有的实现过程以及走过的坑,言归正传,下面开始列出我寻找卡顿元凶之路.  采用双重画布的方式进行缓存—-无明显效果  修改绘图框架,减少绘图中的大量计算,优化了数据结构—并无作用  对象池的使用,避免重绘方法OnDraw中创建大量的对象(Path)—貌似没什么改">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android高效绘图-平移缩放卡顿">
+<meta property="og:url" content="http://yoursite.com/2017/10/20/Android高效绘图-平移缩放卡顿/index.html">
+<meta property="og:site_name" content="One Love, One Lifetime">
+<meta property="og:description" content="本人新手一枚,第一次写博客,写的不好请勿喷,困扰小弟很久的问题,今天终于解决,这里奉上,供小伙伴借鉴,后面我会奉上从基础手指绘图到平移缩放所有的实现过程以及走过的坑,言归正传,下面开始列出我寻找卡顿元凶之路.  采用双重画布的方式进行缓存—-无明显效果  修改绘图框架,减少绘图中的大量计算,优化了数据结构—并无作用  对象池的使用,避免重绘方法OnDraw中创建大量的对象(Path)—貌似没什么改">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://img.blog.csdn.net/20170303114323104?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjQ4Njg3NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170303114613576?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjQ4Njg3NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170303123728227?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjQ4Njg3NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170303123808072?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjQ4Njg3NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:image" content="http://img.blog.csdn.net/20170303124910773?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjQ4Njg3NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+<meta property="og:updated_time" content="2017-10-20T10:36:58.559Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android高效绘图-平移缩放卡顿">
+<meta name="twitter:description" content="本人新手一枚,第一次写博客,写的不好请勿喷,困扰小弟很久的问题,今天终于解决,这里奉上,供小伙伴借鉴,后面我会奉上从基础手指绘图到平移缩放所有的实现过程以及走过的坑,言归正传,下面开始列出我寻找卡顿元凶之路.  采用双重画布的方式进行缓存—-无明显效果  修改绘图框架,减少绘图中的大量计算,优化了数据结构—并无作用  对象池的使用,避免重绘方法OnDraw中创建大量的对象(Path)—貌似没什么改">
+<meta name="twitter:image" content="http://img.blog.csdn.net/20170303114323104?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjQ4Njg3NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
+    
+        <link rel="alternate" type="application/atom+xml" title="One Love, One Lifetime" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">JingYuchun</h5>
+          <a href="mailto:554783696@qq.com" title="554783696@qq.com" class="mail">554783696@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/yscoder" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/ysweb" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                微博
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                CSDN
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">Android高效绘图-平移缩放卡顿</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">Android高效绘图-平移缩放卡顿</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-10-19T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2017-10-20
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#使用工具Eclipse-DDMS"><span class="post-toc-number">1.</span> <span class="post-toc-text">使用工具Eclipse DDMS</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#onDraw-代码块"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">onDraw()代码块</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#第五步"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">第五步</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#揭露卡顿元凶"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">揭露卡顿元凶</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#元凶1"><span class="post-toc-number">1.3.1.</span> <span class="post-toc-text">元凶1:</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#元凶2"><span class="post-toc-number">1.3.2.</span> <span class="post-toc-text">元凶2:</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-Android高效绘图-平移缩放卡顿"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">Android高效绘图-平移缩放卡顿</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-10-20 00:00:00" datetime="2017-10-19T16:00:00.000Z"  itemprop="datePublished">2017-10-20</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>本人新手一枚,第一次写博客,写的不好请勿喷,困扰小弟很久的问题,今天终于解决,这里奉上,供小伙伴借鉴,后面我会奉上从基础手指绘图到平移缩放所有的实现过程以及走过的坑,言归正传,下面开始列出我寻找卡顿元凶之路.</p>
+<ul>
+<li><p><strong>采用双重画布的方式进行缓存—-无明显效果</strong></p>
+</li>
+<li><p><strong>修改绘图框架,减少绘图中的大量计算,优化了数据结构—并无作用</strong></p>
+</li>
+<li><p><strong>对象池的使用,避免重绘方法OnDraw中创建大量的对象(Path)—貌似没什么改变</strong></p>
+</li>
+<li><p><strong>各种分析过后知道了应该是内存抖动,垃圾回收机制造成的卡顿,开始尝试对象的软引用—然而也无作用</strong></p>
+</li>
+<li><p><strong>崩溃了的同时,放弃一段时间,但不管是坐车还是吃饭还是睡觉前,都会在想是什么鬼东西呢,边想着边做着其他功能,但是越做越觉得这个卡顿问题一天不解决,一天心情就不好了</strong></p>
+</li>
+<li><p><strong>最终在百谷了很久无果后,开始觉得对APP内存的使用检测,开始学习,应该会找到答案</strong></p>
+</li>
+<li><p><strong>功夫不负有心人,解决了~</strong></p>
+</li>
+<li><p><strong>不卖关子了,开始奉上解决方式,其实很简单,我只是新手,觉得很low的请左上角返回,不要喷我.</strong></p>
+</li>
+</ul>
+<hr>
+<h2 id="使用工具Eclipse-DDMS"><a href="#使用工具Eclipse-DDMS" class="headerlink" title="使用工具Eclipse DDMS"></a>使用工具Eclipse DDMS</h2><hr>
+<ul>
+<li><p>Heap分析</p>
+</li>
+<li><p>Allocation Tracker 分析</p>
+</li>
+</ul>
+<hr>
+<h3 id="onDraw-代码块"><a href="#onDraw-代码块" class="headerlink" title="onDraw()代码块"></a>onDraw()代码块</h3><pre><code>所有绘制的对象，例如：画直线,弧线,矩形,填充,等等.需要绘制的不可预知多少的的对象,所以这里不可避免需要重绘,循环遍历对象的绘制方法,这里也是出现问题的根源,重绘的时候会调用每个对象的绘图方法,方法中一定会创建一些对象,比如:new Path();当然卡顿他不是最终凶手,不过后面还需要对他进行使用对象池,避免创建过多的path对象.
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">protected void onDraw(Canvas canvas)&#123;</div><div class="line">	super.onDraw(canvas);</div><div class="line">	mCanvas = canvas;</div><div class="line">	try &#123;</div><div class="line">		lFHouse.setBacgroundColor(this, paint_region_bag);</div><div class="line"></div><div class="line">		for(LFWall wall : lFHouse.houseWalls)&#123;</div><div class="line">              wall.doDraw(this, mCanvas)</div><div class="line">		&#125;</div><div class="line">		for(LFWall wall : lFHouse.houseWalls)&#123;</div><div class="line">			for (LFDoor door : wall.walldoors) &#123;</div><div class="line">				door.onDraw(this, mCanvas);</div><div class="line">		   &#125;</div><div class="line">		&#125;	</div><div class="line">	&#125; catch (Exception e) &#123;</div><div class="line">		e.printStackTrace();</div><div class="line">	&#125; </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>###第一步</p>
+<pre><code>运行程序,切换到DDMS视图 如题所示操作
+</code></pre><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170303114323104?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjQ4Njg3NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure>
+<hr>
+<p>###第二步<br>     操作程序有卡顿的地方几次,手动点击Cause GC 如图<br> <figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170303114613576?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjQ4Njg3NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure></p>
+<hr>
+<p>###第三步<br>    分析一下,多次操作,多次Cause GC,注意看free中的Total Size 大小,如果抖动的比较大,但是每次都能降低,反复增大,减少,说明存在了内存的抖动,即当前操作存在短时间内创建大量的对象,占用的内存,唤起了GC短时间内快速去回收无用的对象,这个回收的时间内,程序的其他操作是需要等待GC完成才可以继续工作的,所有就出现了卡慢,对象太多,gc的遍历回收工作占用的时间就过长了.可以通过data object的数量可以清楚的看到内存的剧增和剧减的情况.<br>    通过以上分析,我们知道了程序卡顿的具体原因,下面就需要找出是哪些对象占用了呢,找出他必须弄死他.</p>
+<hr>
+<p>###第四步</p>
+<p>打开Allocation Tracker视图,这个家伙很重要,能追踪查看内存到底让哪个小崽子占用了,还可以定位到包名,类名,代码行数,厉害了,我才会使用..,忏愧啊.勿喷小伙伴门.如图所示:<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170303123728227?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjQ4Njg3NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure></p>
+<hr>
+<h3 id="第五步"><a href="#第五步" class="headerlink" title="第五步"></a>第五步</h3><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170303123808072?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjQ4Njg3NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://img.blog.csdn.net/20170303124910773?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMjQ4Njg3NQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述" title="">
+                </div>
+                <div class="image-caption">这里写图片描述</div>
+            </figure>
+<pre><code>这里说明一下 ,由于我优化了程序,查找元凶的现场,已被我清理,所以这里看不到那些真正的元凶.下面我列出元凶,以供小伙伴借鉴.
+</code></pre><p>[TOC]</p>
+<h3 id="揭露卡顿元凶"><a href="#揭露卡顿元凶" class="headerlink" title="揭露卡顿元凶"></a>揭露卡顿元凶</h3><h4 id="元凶1"><a href="#元凶1" class="headerlink" title="元凶1:"></a>元凶1:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//这个方法是用来做精度转换的 保留几位小数</div><div class="line">public static float round(float v, int scale) &#123;</div><div class="line">		if (scale &lt; 0) &#123;</div><div class="line">			throw new IllegalArgumentException(&quot;The scale must be a positive integer or zero&quot;);</div><div class="line">		&#125;</div><div class="line">		//重点是下面这段代码</div><div class="line">		BigDecimal b = new BigDecimal(Float.toString(v));</div><div class="line">		BigDecimal one = new BigDecimal(&quot;1&quot;);</div><div class="line">		return b.divide(one, scale, BigDecimal.ROUND_HALF_UP).floatValue();</div><div class="line">	&#125;</div></pre></td></tr></table></figure>
+<pre><code>  1.BigDecimal 对象占用的资源BigInteger通过追踪内存占用显示,这里就不贴图了.
+这里解释下为什么会,由于我这个方法,在画线的时候对于每个点的x,y都进行了精度转换处理,又因为在平移缩放的时候我们是需要不断重绘的,也就是不断执行onDraw()这个系统方法,那么在这里我循环调用重绘线条,每一个点的x,y都需要重新计算并转换,造成了不断new BigDecimal(). 这个内部机制我还需要去底层源码去看下,现在只知道是这个东西占用了不少的内存,每new 一个好像是占用了144
+  2. Float.toString(v)这个转换也是占用了很大资源StringBuilder 具体底层小弟也是不能深入解释了
+  3. .floatValue() 这个也是占用了很多 char[] 数组.
+</code></pre><h4 id="元凶2"><a href="#元凶2" class="headerlink" title="元凶2:"></a>元凶2:</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line">	 * 屏幕的宽</div><div class="line">	 */</div><div class="line">	public static int getScreenWidth(Activity activity)&#123;</div><div class="line">	    DisplayMetrics dm = new DisplayMetrics();</div><div class="line">		dm = activity.getResources().getDisplayMetrics();</div><div class="line">		activity.getWindowManager().getDefaultDisplay().getMetrics(dm);</div><div class="line">	   return dm.widthPixels ;</div><div class="line">   &#125;</div><div class="line"></div><div class="line">	/*</div><div class="line">	 * 屏幕的高</div><div class="line">	 */</div><div class="line">   public static float getScreenHeigth(Activity activity)&#123;</div><div class="line">	    DisplayMetrics dm = new DisplayMetrics();</div><div class="line">		dm = activity.getResources().getDisplayMetrics();</div><div class="line">		activity.getWindowManager().getDefaultDisplay().getMetrics(dm);</div><div class="line">	   return dm.heightPixels ;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<p>这里贴出的获取屏幕的宽高代码是 很正常的方法,看起来没什么特别.在看下面:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">//该方法是我用于真实坐标点与屏幕坐标点的一个转换 </div><div class="line">public LFPoint GetScreenPoint(LFPoint Point) &#123;</div><div class="line">		float X = (float) (Zoom * DotsPerMeter * Point.x + Origin.x);</div><div class="line">		float Y = (float) (DisplayUtil.getScreenHeigth(drawActivity) - Zoom * DotsPerMeter * Point.y + Origin.y);</div><div class="line">		//X = DataUtils.round(X, 2);</div><div class="line">		//Y = DataUtils.round(Y, 2);</div><div class="line">		LFPoint p = new LFPoint(X, Y, Point.bulge);</div><div class="line">		return p;</div><div class="line">	&#125;</div></pre></td></tr></table></figure></p>
+<pre><code>重点就是 重绘的时候每个点都要不断的进行转换,也就是在onDraw中不断的随手指的移动和缩放进行转换...看到了吗 下面有调用到获取屏幕的静态方法.就是它,不断的在获取,获取......导致了占用大量的资源 貌似也是每个144.我们继续...找
+</code></pre><p>到这里,我们的程序的卡顿情况,被我们清理的差不多了,终于不会卡了,瞬间感觉整个人都飘了,原来自己给自己挖了那么多的坑,小弟真实惭愧,网上的代码段固然方便,但是不能一味的直接拿来用,其中很多不知道的东西,你往往忽略了的地方就是问题存在的地方,当你无计可施的时候,还需要坚持 一步步探索,找寻答案.<br>顺便再啰嗦一句,onDraw中不可避免的是创建大量的path对象,这里根据网上搜寻的结果,总结了下还是用对象池比较好,但是网上有两个版本,一个是可以任何对象的,一个是只有自定义的类对象才可以,系统Path对象好像不行,所以简单的做了一下改动,<br>对,就是自定义path, 我啥都没改 仅仅是extend了一下,然后套用了下面的对象池的初始化方法,类似Handler的获取Message的时候的方式一样,不知道对不对,贴出代码,参考一下,反正我试过,可用.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public class MyPath extends Path &#123;</div><div class="line"></div><div class="line">	private static final SynchronizedPool&lt;MyPath&gt; sPool = new SynchronizedPool&lt;MyPath&gt;(10);</div><div class="line"></div><div class="line">	public static MyPath obtain() &#123;</div><div class="line">		MyPath instance = sPool.acquire();</div><div class="line">		return (instance != null) ? instance : new MyPath();</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void recycle() &#123;</div><div class="line">		sPool.release(this);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>好了,以上的寻找卡顿元凶之路,终于告一段落,还有很多地方需要优化的,后面再继续奉上,感谢看完的小伙伴,忍不住发一篇,希望能帮到你,后面我会继续更新出绘图相关的操作,比如画布的,比如view的,还有缩放,平移的实现,这些你是百谷不到的,那些基础的东西我看过很多,真的是千篇一律的.针对的平移缩放都是图片的操作而不是坐标点.<br>下次再见~有高见欢迎点评,虚心接受.</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-10-20T10:36:58.559Z" itemprop="dateUpdated">2017-10-20 18:36:58</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2017/10/20/Android高效绘图-平移缩放卡顿/" target="_blank" rel="external">http://yoursite.com/2017/10/20/Android高效绘图-平移缩放卡顿/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="JingYuchun">
+            JingYuchun
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/10/20/Android高效绘图-平移缩放卡顿/&title=《Android高效绘图-平移缩放卡顿》 — One Love, One Lifetime&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/10/20/Android高效绘图-平移缩放卡顿/&title=《Android高效绘图-平移缩放卡顿》 — One Love, One Lifetime&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/10/20/Android高效绘图-平移缩放卡顿/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android高效绘图-平移缩放卡顿》 — One Love, One Lifetime&url=http://yoursite.com/2017/10/20/Android高效绘图-平移缩放卡顿/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/10/20/Android高效绘图-平移缩放卡顿/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/10/20/学习搭建个人博客/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">使用GitHub+Hexo搭建个人博客</h4>
+      </a>
+    </div>
+  
+
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=true"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: '',
+            repo: '',
+            oauth: {
+                client_id: '',
+                client_secret: '',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>JingYuchun &copy; 2017</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2017/10/20/Android高效绘图-平移缩放卡顿/&title=《Android高效绘图-平移缩放卡顿》 — One Love, One Lifetime&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2017/10/20/Android高效绘图-平移缩放卡顿/&title=《Android高效绘图-平移缩放卡顿》 — One Love, One Lifetime&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2017/10/20/Android高效绘图-平移缩放卡顿/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《Android高效绘图-平移缩放卡顿》 — One Love, One Lifetime&url=http://yoursite.com/2017/10/20/Android高效绘图-平移缩放卡顿/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2017/10/20/Android高效绘图-平移缩放卡顿/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtUlEQVR42u3aQY7jMAwEwPz/07PAnmYPcpqkOBMsyqfAMRSVDhbT1OsVX19/r++fT3e+3z+NcBrzebTTyBcuPDw8vNbUT9eJ9DzF6jOTJX6zuHh4eHhrvHxavYVIJp281fM54+Hh4X0C7/lnnreN53I8eR4PDw/vf+XlVxWMh4eH92m8ZBLVaGCSqfbKejw8PLyf4fUi1N/9vN7fw8PDw2t11auv7157LJlbs2THw8PDW+DloUMSSeRldzlQCMBR1oKHh4d3iZf/7Z8cLKjyknZa/i0eHh7eLV4egObHAvKDAtUtJ38GDw8Pb5uXJJ+9gjt5Ph8539L+yVrw8PDwFnjJC33OyI8j3HoeDw8Pb4PXi02rDa2kZO+Nn4QmeHh4eHd5k9x3/m2hfRXj3/xjwMPDw7vEm4QO1XBhcvgg/xuAh4eH95O8pCWWt6l6RXZeyr/ZYPDw8PAWeHksmwxUXZoqo3eeCg8PD+8uL381J1tC9U5vicv9PTw8PLxlXhIx9F7iCaMXEB+XEg8PD2+B1xuiGqf2Yt98s0lmi4eHh3eL1yuIq6HGvG3Wi1Hw8PDwNnh5+2rS4pofTeiFxXh4eHjbvLth7iSkqB5pjY4O4OHh4V3lzQPT6v1XfPVaZaOh8fDw8OLeerVNNT9S0CyR8/YbHh4e3gKv2oAfhQKDple1/YaHh4e3x6sGpr3pJvjk5V59Bg8PD2+DN2k7zYvm/HWfxxZ4eHh427yv4pW0l3pNrEmRfdyu8PDw8BZ4k0ZU3qbq7VTJRlUtuPHw8PBu8arlcvKCzsvuKqAa+OLh4eHt8Xotsd7Oc7kgfp4hHh4e3sfwqocA8qZaj3EcEw8PD+9Xeb0QYbJYvZGbGwMeHh5ekTdpPk2aW/l0ewuHh4eHt8GbNMDyQDa/k8fH1WMNeHh4eGPeH6cGNyv/MQFTAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=true&web_id=true')
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
