@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-10-20T10:38:21.830Z</updated>
+  <updated>2017-10-20T10:36:58.559Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,28 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>使用GitHub+Hexo搭建个人博客</title>
-    <link href="http://yoursite.com/2017/10/20/%E5%AD%A6%E4%B9%A0%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
-    <id>http://yoursite.com/2017/10/20/学习搭建个人博客/</id>
-    <published>2017-10-19T16:00:00.000Z</published>
-    <updated>2017-10-20T10:38:21.830Z</updated>
-    
-    <content type="html"><![CDATA[<p>第一个MarkDown文章</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;第一个MarkDown文章&lt;/p&gt;
-
-      
-    
-    </summary>
-    
-    
-  </entry>
   
   <entry>
     <title>Android高效绘图-平移缩放卡顿</title>
@@ -54,6 +32,28 @@
         &lt;p&gt;本人新手一枚,第一次写博客,写的不好请勿喷,困扰小弟很久的问题,今天终于解决,这里奉上,供小伙伴借鉴,后面我会奉上从基础手指绘图到平移缩放所有的实现过程以及走过的坑,言归正传,下面开始列出我寻找卡顿元凶之路.&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;采用双重画布的方
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>使用GitHub+Hexo搭建个人博客</title>
+    <link href="http://yoursite.com/2017/10/20/%E5%AD%A6%E4%B9%A0%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://yoursite.com/2017/10/20/学习搭建个人博客/</id>
+    <published>2017-10-19T16:00:00.000Z</published>
+    <updated>2017-10-20T10:38:21.830Z</updated>
+    
+    <content type="html"><![CDATA[<p>第一个MarkDown文章</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;第一个MarkDown文章&lt;/p&gt;
+
       
     
     </summary>
