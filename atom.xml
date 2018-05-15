@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-04-02T08:30:28.440Z</updated>
+  <updated>2018-05-15T09:59:10.877Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2018/05/15/2018Android%E9%9D%A2%E8%AF%95%E7%AC%94%E8%AE%B0(%E4%B8%80)/"/>
+    <id>http://yoursite.com/2018/05/15/2018Android面试笔记(一)/</id>
+    <published>2018-05-15T10:04:01.067Z</published>
+    <updated>2018-05-15T09:59:10.877Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="2018Android面试笔记-一"><a href="#2018Android面试笔记-一" class="headerlink" title="2018Android面试笔记(一)"></a>2018Android面试笔记(一)</h1><p>2018年5月份了,当前公司由于项目完成了,也准备各奔东西了,因为是外包的,所以也开始了面试,下面记录下我遇到的面试公司以及每一面的过程.</p><h2 id="一、广州博冠"><a href="#一、广州博冠" class="headerlink" title="一、广州博冠"></a>一、广州博冠</h2><p>​        这家是以硬件为主进行的智能软硬件结合的公司,硬件资源丰富,集团主要做望远镜等等很多,面试这家主要做智能家居方向的,目前有成熟的产品上线,接下来准备做智能监控方向的app项目,硬件工程师,后端工程师,硬件,软件都自己做,老牌公司,还是挺完整的.</p><h5 id="第一面"><a href="#第一面" class="headerlink" title="第一面"></a>第一面</h5><p>面试官看起来比较成熟,但也大不过我几岁,问的问题大概是基础内容,下面回忆整理下</p><blockquote><p><strong>网络方面</strong></p></blockquote><ul><li>tcp/ip 三次握手过程</li><li>udp理解</li><li>多线程是否自己实现过/如何避免线程死锁等问题</li></ul><blockquote><p><strong>基础方面</strong></p></blockquote><ul><li>Android四大组件一一介绍</li><li>activity 生命周期以及每个周期的使用场景</li><li>service的起动方式以及区别和各自的使用场景</li><li>broadcast注册方式及为什么会有这两种方式各自存在的意义及使用场景是什么</li><li>contentprovider理解,能做什么.</li></ul><blockquote><p><strong>项目方面</strong></p></blockquote><ul><li>2D绘图原理(这个是个人项目里使用的 )</li><li>自定义View过程(当场给一个需求,说出实现过程)</li><li>蓝牙通讯 解码包分包机制(传输数据过大)如何处理的</li></ul><h5 id="第二面"><a href="#第二面" class="headerlink" title="第二面"></a>第二面</h5><p>第二次面试就比较简单了,面试官就是和你聊天,聊项目,聊之前的经历,因为我第一个项目耗费时间比较长,印象也比较深刻,就聊了很多,比如项目中遇到的最多最大的困难是什么,怎么解决的等</p><p>聊的还算愉快,就这样结束了,两次面试都没有提及薪酬待遇问题,这一点后来回去之后才发现.</p><h2 id="二、广州拓普基因"><a href="#二、广州拓普基因" class="headerlink" title="二、广州拓普基因"></a>二、广州拓普基因</h2><h5 id="第一面-1"><a href="#第一面-1" class="headerlink" title="第一面"></a>第一面</h5><p>这家公司是在珠江新城高德置地广场,离我现在的位置比较近,之前在官网了解了下,最终也没搞清楚是做怎么样的医疗项目,不管了,下面是面试过程……</p><p>在前台稍等了下,进入小会议室,接连来了两个面试人员,</p><p>貌似技术人员的问题(为啥貌似,因为问题和技术好像也没什么关系)</p><ul><li>自我介绍(我一贯的自我介绍都是从大学毕业到当前公司是怎么个过程说一遍 很简洁)</li><li>分别介绍下项目(依依介绍完毕)</li><li>项目人员分配/负责模块完成时间</li><li>为什么学软件</li><li>一个商城项目 一个人独立完成 大概需要多少时间</li></ul><p>这个时候来了一个管理人员,下面的问题更是离谱</p><p>你觉得你的优势是什么</p><p>你觉得你的劣势是什么</p><p>如果有5个候选,凭什么会录入选你</p><p>你觉得有哪两点是在你入职后我会担心的</p><p>问道这 我已经不知道说什么了,后面就是谈个人规划,发展方向的了,他有他的见解,当然我也有自己的理解,他说完我说,都说完后就结束了,给我的感觉是很不舒服,面试过程一味无趣,没有和技术相关,貌似在做性格测试,我有个同事就经历过性格测试,好吧,这个就不说了,今天面试结束,静静等待结果,准备第二天面试.</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;2018Android面试笔记-一&quot;&gt;&lt;a href=&quot;#2018Android面试笔记-一&quot; class=&quot;headerlink&quot; title=&quot;2018Android面试笔记(一)&quot;&gt;&lt;/a&gt;2018Android面试笔记(一)&lt;/h1&gt;&lt;p&gt;2018年5月份
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>微信小程序零基础入门踩坑之路</title>

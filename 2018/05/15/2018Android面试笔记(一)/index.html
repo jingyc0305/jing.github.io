@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>No title | One Love, One Lifetime | 相信技术的力量.learn once, write everywhere,write once, run anywhere</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="2018Android面试笔记(一)2018年5月份了,当前公司由于项目完成了,也准备各奔东西了,因为是外包的,所以也开始了面试,下面记录下我遇到的面试公司以及每一面的过程. 一、广州博冠​        这家是以硬件为主进行的智能软硬件结合的公司,硬件资源丰富,集团主要做望远镜等等很多,面试这家主要做智能家居方向的,目前有成熟的产品上线,接下来准备做智能监控方向的app项目,硬件工程师,后端工程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="No title">
+<meta property="og:url" content="http://yoursite.com/2018/05/15/2018Android面试笔记(一)/index.html">
+<meta property="og:site_name" content="One Love, One Lifetime">
+<meta property="og:description" content="2018Android面试笔记(一)2018年5月份了,当前公司由于项目完成了,也准备各奔东西了,因为是外包的,所以也开始了面试,下面记录下我遇到的面试公司以及每一面的过程. 一、广州博冠​        这家是以硬件为主进行的智能软硬件结合的公司,硬件资源丰富,集团主要做望远镜等等很多,面试这家主要做智能家居方向的,目前有成熟的产品上线,接下来准备做智能监控方向的app项目,硬件工程师,后端工程">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-05-15T09:59:10.877Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="No title">
+<meta name="twitter:description" content="2018Android面试笔记(一)2018年5月份了,当前公司由于项目完成了,也准备各奔东西了,因为是外包的,所以也开始了面试,下面记录下我遇到的面试公司以及每一面的过程. 一、广州博冠​        这家是以硬件为主进行的智能软硬件结合的公司,硬件资源丰富,集团主要做望远镜等等很多,面试这家主要做智能家居方向的,目前有成熟的产品上线,接下来准备做智能监控方向的app项目,硬件工程师,后端工程">
+    
+        <link rel="alternate" type="application/atom+xml" title="One Love, One Lifetime" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">JingYuchun</h5>
+          <a href="mailto:554783696@qq.com" title="554783696@qq.com" class="mail">554783696@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jingyc0305" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect active">
+              <a href="/" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                微博
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                CSDN
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">No title</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">No title</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-05-15T10:04:01.067Z" itemprop="datePublished" class="page-time">
+  2018-05-15
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#2018Android面试笔记-一"><span class="post-toc-number">1.</span> <span class="post-toc-text">2018Android面试笔记(一)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#一、广州博冠"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">一、广州博冠</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#第一面"><span class="post-toc-number">1.1.0.0.1.</span> <span class="post-toc-text">第一面</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#第二面"><span class="post-toc-number">1.1.0.0.2.</span> <span class="post-toc-text">第二面</span></a></li></ol></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#二、广州拓普基因"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">二、广州拓普基因</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#第一面-1"><span class="post-toc-number">1.2.0.0.1.</span> <span class="post-toc-text">第一面</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-2018Android面试笔记(一)"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">No title</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-05-15 18:04:01" datetime="2018-05-15T10:04:01.067Z"  itemprop="datePublished">2018-05-15</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h1 id="2018Android面试笔记-一"><a href="#2018Android面试笔记-一" class="headerlink" title="2018Android面试笔记(一)"></a>2018Android面试笔记(一)</h1><p>2018年5月份了,当前公司由于项目完成了,也准备各奔东西了,因为是外包的,所以也开始了面试,下面记录下我遇到的面试公司以及每一面的过程.</p>
+<h2 id="一、广州博冠"><a href="#一、广州博冠" class="headerlink" title="一、广州博冠"></a>一、广州博冠</h2><p>​        这家是以硬件为主进行的智能软硬件结合的公司,硬件资源丰富,集团主要做望远镜等等很多,面试这家主要做智能家居方向的,目前有成熟的产品上线,接下来准备做智能监控方向的app项目,硬件工程师,后端工程师,硬件,软件都自己做,老牌公司,还是挺完整的.</p>
+<h5 id="第一面"><a href="#第一面" class="headerlink" title="第一面"></a>第一面</h5><p>面试官看起来比较成熟,但也大不过我几岁,问的问题大概是基础内容,下面回忆整理下</p>
+<blockquote>
+<p><strong>网络方面</strong></p>
+</blockquote>
+<ul>
+<li>tcp/ip 三次握手过程</li>
+<li>udp理解</li>
+<li>多线程是否自己实现过/如何避免线程死锁等问题</li>
+</ul>
+<blockquote>
+<p><strong>基础方面</strong></p>
+</blockquote>
+<ul>
+<li>Android四大组件一一介绍</li>
+<li>activity 生命周期以及每个周期的使用场景</li>
+<li>service的起动方式以及区别和各自的使用场景</li>
+<li>broadcast注册方式及为什么会有这两种方式各自存在的意义及使用场景是什么</li>
+<li>contentprovider理解,能做什么.</li>
+</ul>
+<blockquote>
+<p><strong>项目方面</strong></p>
+</blockquote>
+<ul>
+<li>2D绘图原理(这个是个人项目里使用的 )</li>
+<li>自定义View过程(当场给一个需求,说出实现过程)</li>
+<li>蓝牙通讯 解码包分包机制(传输数据过大)如何处理的</li>
+</ul>
+<h5 id="第二面"><a href="#第二面" class="headerlink" title="第二面"></a>第二面</h5><p>第二次面试就比较简单了,面试官就是和你聊天,聊项目,聊之前的经历,因为我第一个项目耗费时间比较长,印象也比较深刻,就聊了很多,比如项目中遇到的最多最大的困难是什么,怎么解决的等</p>
+<p>聊的还算愉快,就这样结束了,两次面试都没有提及薪酬待遇问题,这一点后来回去之后才发现.</p>
+<h2 id="二、广州拓普基因"><a href="#二、广州拓普基因" class="headerlink" title="二、广州拓普基因"></a>二、广州拓普基因</h2><h5 id="第一面-1"><a href="#第一面-1" class="headerlink" title="第一面"></a>第一面</h5><p>这家公司是在珠江新城高德置地广场,离我现在的位置比较近,之前在官网了解了下,最终也没搞清楚是做怎么样的医疗项目,不管了,下面是面试过程……</p>
+<p>在前台稍等了下,进入小会议室,接连来了两个面试人员,</p>
+<p>貌似技术人员的问题(为啥貌似,因为问题和技术好像也没什么关系)</p>
+<ul>
+<li>自我介绍(我一贯的自我介绍都是从大学毕业到当前公司是怎么个过程说一遍 很简洁)</li>
+<li>分别介绍下项目(依依介绍完毕)</li>
+<li>项目人员分配/负责模块完成时间</li>
+<li>为什么学软件</li>
+<li>一个商城项目 一个人独立完成 大概需要多少时间</li>
+</ul>
+<p>这个时候来了一个管理人员,下面的问题更是离谱</p>
+<p>你觉得你的优势是什么</p>
+<p>你觉得你的劣势是什么</p>
+<p>如果有5个候选,凭什么会录入选你</p>
+<p>你觉得有哪两点是在你入职后我会担心的</p>
+<p>问道这 我已经不知道说什么了,后面就是谈个人规划,发展方向的了,他有他的见解,当然我也有自己的理解,他说完我说,都说完后就结束了,给我的感觉是很不舒服,面试过程一味无趣,没有和技术相关,貌似在做性格测试,我有个同事就经历过性格测试,好吧,这个就不说了,今天面试结束,静静等待结果,准备第二天面试.</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-05-15T09:59:10.877Z" itemprop="dateUpdated">2018-05-15 17:59:10</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/05/15/2018Android面试笔记(一)/" target="_blank" rel="external">http://yoursite.com/2018/05/15/2018Android面试笔记(一)/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="JingYuchun">
+            JingYuchun
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/05/15/2018Android面试笔记(一)/&title=《No title》 — One Love, One Lifetime&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/05/15/2018Android面试笔记(一)/&title=《No title》 — One Love, One Lifetime&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/05/15/2018Android面试笔记(一)/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《No title》 — One Love, One Lifetime&url=http://yoursite.com/2018/05/15/2018Android面试笔记(一)/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/05/15/2018Android面试笔记(一)/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/04/02/微信小程序零基础入门踩坑之路/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">微信小程序零基础入门踩坑之路</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=true"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: '',
+            repo: '',
+            oauth: {
+                client_id: '',
+                client_secret: '',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>JingYuchun &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/05/15/2018Android面试笔记(一)/&title=《No title》 — One Love, One Lifetime&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/05/15/2018Android面试笔记(一)/&title=《No title》 — One Love, One Lifetime&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/05/15/2018Android面试笔记(一)/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《No title》 — One Love, One Lifetime&url=http://yoursite.com/2018/05/15/2018Android面试笔记(一)/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/05/15/2018Android面试笔记(一)/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJ0lEQVR42u3aW67qMBAEQPa/ae4CEDndnnCl2OUvJILi4mM0r9crPu+P8/ntt+c/n/l8/tuvbj4YGBiPZbwvT/JM8uJ3efK7YWBgnMP49uLrZ66fTALrJDRjYGBg5IzrBDFPMTEwMDDuYkwSu+SiGBgYGJMi9roplr8yb7f9pBbHwMB4ICPvuv//zz+Zb2BgYDyKMWnWrw0s10YOf9wKAwNja0bbSsvL3bX23Og+GBgYWzPa0HldxN7Vhmv/FAwMjNMYbRhNePlQc9Lyw8DA2JuRX2I+pGzfWKSGGBgY2zGS1G0tZWwDdPLGr38cBgbG1oy2Nd8uXiQl6KRsXhxkYmBgPIrRvj4Po3ethUUjBAwMjGMYbTo4aaWtxcyvd8PAwDiAkYfIeVLYJp3FtggGBsYxjLVViZydjBPy1BADA+MERruA1aaSyQJHvsw6WrbAwMDYiLG2YJEHxOTqRaNt4sbAwHgIo7W26xGLRWl5BwwMjL0Zv9hbaNtt86IaAwPjBMa9mWY7PHjF54+gjIGBcQwjb/qvMdZCcDHIxMDAOICRhODFrDMecLZBHwMDY2/GuzxrpWY+Fr0OwRgYGGcy2gJynva1gbVetsDAwNiUkQfZtuhtQ+0o4GJgYBzAWAt87dhgUsRGeS4GBgZGma61nydNQAwMDIy8QM0Tu7WythhhYmBgbMfIhwFryxbtWLRt/2FgYOzNaEvHyQDgrtHm4lATAwPjeYx/RAiyUDCOtecAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=true&web_id=true')
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
