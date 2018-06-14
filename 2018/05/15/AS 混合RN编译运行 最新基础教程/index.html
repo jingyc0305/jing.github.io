@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>AS 混合RN编译运行 最新基础教程 | One Love, One Lifetime | 相信技术的力量.learn once, write everywhere,write once, run anywhere</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="由于马上入职一家混合开发的公司，之前一直是原生开发，所以不得不学了，百度google了很多，最后因为一个报错耗费了一下午，网上的教程大部分都是17年的，有些地方还是不清楚，接下来开始整理我亲自采坑的过程。  环境搭建 创建原生工程或直接使用已有工程（注意：minSdkVersion &amp;gt;=16）  下载安装 Python 后在系统变量path后拼接 “；安装路径”即可 cmd命令: pyth">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AS 混合RN编译运行 最新基础教程">
+<meta property="og:url" content="http://yoursite.com/2018/05/15/AS 混合RN编译运行 最新基础教程/index.html">
+<meta property="og:site_name" content="One Love, One Lifetime">
+<meta property="og:description" content="由于马上入职一家混合开发的公司，之前一直是原生开发，所以不得不学了，百度google了很多，最后因为一个报错耗费了一下午，网上的教程大部分都是17年的，有些地方还是不清楚，接下来开始整理我亲自采坑的过程。  环境搭建 创建原生工程或直接使用已有工程（注意：minSdkVersion &amp;gt;=16）  下载安装 Python 后在系统变量path后拼接 “；安装路径”即可 cmd命令: pyth">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/6/13/163f4c794b88666b?w=345&h=447&f=png&s=19231">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/6/13/163f4c8a345af12c?w=340&h=432&f=png&s=12478">
+<meta property="og:image" content="https://user-gold-cdn.xitu.io/2018/6/13/163f4ca7e16ccd99?w=278&h=488&f=png&s=8794">
+<meta property="og:updated_time" content="2018-06-14T02:19:59.696Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="AS 混合RN编译运行 最新基础教程">
+<meta name="twitter:description" content="由于马上入职一家混合开发的公司，之前一直是原生开发，所以不得不学了，百度google了很多，最后因为一个报错耗费了一下午，网上的教程大部分都是17年的，有些地方还是不清楚，接下来开始整理我亲自采坑的过程。  环境搭建 创建原生工程或直接使用已有工程（注意：minSdkVersion &amp;gt;=16）  下载安装 Python 后在系统变量path后拼接 “；安装路径”即可 cmd命令: pyth">
+<meta name="twitter:image" content="https://user-gold-cdn.xitu.io/2018/6/13/163f4c794b88666b?w=345&h=447&f=png&s=19231">
+    
+        <link rel="alternate" type="application/atom+xml" title="One Love, One Lifetime" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="//unpkg.com/hexo-theme-material-indigo@latest/css/style.css">
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">JingYuchun</h5>
+          <a href="mailto:554783696@qq.com" title="554783696@qq.com" class="mail">554783696@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                归档
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/jingyc0305" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect active">
+              <a href="/" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                微博
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/custom"  >
+                <i class="icon icon-lg icon-link"></i>
+                CSDN
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">AS 混合RN编译运行 最新基础教程</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">AS 混合RN编译运行 最新基础教程</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-05-14T16:00:00.000Z" itemprop="datePublished" class="page-time">
+  2018-05-15
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#环境搭建"><span class="post-toc-number">1.</span> <span class="post-toc-text">环境搭建</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#工程配置"><span class="post-toc-number">2.</span> <span class="post-toc-text">工程配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#代码配置"><span class="post-toc-number">3.</span> <span class="post-toc-text">代码配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#运行配置"><span class="post-toc-number">4.</span> <span class="post-toc-text">运行配置</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-AS 混合RN编译运行 最新基础教程"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">AS 混合RN编译运行 最新基础教程</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-05-15 00:00:00" datetime="2018-05-14T16:00:00.000Z"  itemprop="datePublished">2018-05-15</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <blockquote>
+<p>由于马上入职一家混合开发的公司，之前一直是原生开发，所以不得不学了，百度google了很多，最后因为一个报错耗费了一下午，网上的教程大部分都是17年的，有些地方还是不清楚，接下来开始整理我亲自采坑的过程。</p>
+</blockquote>
+<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><ul>
+<li><p>创建原生工程或直接使用已有工程（注意：minSdkVersion &gt;=16）</p>
+</li>
+<li><p>下载安装 <a href="https://www.python.org/downloads/" target="_blank" rel="external">Python</a> 后在系统变量path后拼接 “；安装路径”即可 cmd命令: python –version验证是否成功</p>
+</li>
+<li><p>下载安装 <a href="https://nodejs.org/en/" target="_blank" rel="external">node.js</a> 后在系统变量path后拼接 “ ；安装路径”即可 cmd命令: node -v 验证是否成功</p>
+</li>
+<li><p>下载安装 <a href="https://curl.haxx.se/download.html" target="_blank" rel="external">curl</a> 找到对应自己电脑系统的版本下载 解压curl.exe程序到C:\Windows\System32目录下即可.</p>
+</li>
+</ul>
+<p>cmd运行结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Microsoft Windows [版本 6.1.7601]</div><div class="line">版权所有 (c) 2009 Microsoft Corporation。保留所有权利。</div><div class="line"></div><div class="line">C:\Users\Administrator&gt;python --version</div><div class="line">Python 3.6.5</div><div class="line"></div><div class="line">C:\Users\Administrator&gt;node -v</div><div class="line">v8.10.0</div><div class="line"></div><div class="line">C:\Users\Administrator&gt;</div></pre></td></tr></table></figure>
+<h3 id="工程配置"><a href="#工程配置" class="headerlink" title="工程配置"></a>工程配置</h3><p>在AS Terminal中或cmd cd到工程的跟目下 依次执行以下命令：</p>
+<p>1.<strong>npm init</strong> 用于生成package.json文件 按步骤一步一步回车 最后yes即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;name&quot;: &quot;reactnativedemo&quot;,</div><div class="line">  &quot;version&quot;: &quot;1.0.0&quot;,</div><div class="line">  &quot;description&quot;: &quot;reactnative&quot;,</div><div class="line">  &quot;main&quot;: &quot;index.js&quot;,</div><div class="line">  &quot;scripts&quot;: &#123;</div><div class="line">    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</div><div class="line">  &#125;,</div><div class="line">  &quot;author&quot;: &quot;&quot;,</div><div class="line">  &quot;license&quot;: &quot;ISC&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>2.<strong>npm install –save react react-native</strong> 用于安装react native的库 下面是正在安装，需要等待一段时间</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">D:\ReactNativeDemo&gt;npm install --save react react-native</div><div class="line">[..................] | fetchMetadata: sill resolveWithNewModule isomorphic-fetch@2.2.1 checking installable status</div></pre></td></tr></table></figure>
+<p>安装完成后如图<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2018/6/13/163f4c794b88666b?w=345&h=447&f=png&s=19231" alt="react" title="">
+                </div>
+                <div class="image-caption">react</div>
+            </figure></p>
+<p>3.<strong>react-native curl -o .flowconfig  <a href="https://raw.githubusercontent.com/facebook/react-native/master/.flowconfig" target="_blank" rel="external">https://raw.githubusercontent.com/facebook/react-native/master/.flowconfig</a></strong>  用于下载.flowconfig文件</p>
+<p>4.修改<strong>package.json</strong> 在<strong>scripts</strong>标签下添加 <strong>“start”: “node node_modules/react-native/local-cli/cli.js start”</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;name&quot;: &quot;reactnativedemo&quot;,</div><div class="line">  &quot;version&quot;: &quot;1.0.0&quot;,</div><div class="line">  &quot;description&quot;: &quot;reactnative&quot;,</div><div class="line">  &quot;main&quot;: &quot;index.js&quot;,</div><div class="line">  &quot;scripts&quot;: &#123;</div><div class="line">    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,</div><div class="line">    &quot;start&quot;: &quot;node node_modules/react-native/local-cli/cli.js start&quot;</div><div class="line">  &#125;,</div><div class="line">  &quot;author&quot;: &quot;&quot;,</div><div class="line">  &quot;license&quot;: &quot;ISC&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>5.添加<strong>index.android.js</strong> 文件到工程的根目录下，内容如下 仅显示一个文本“Hello, ReactNative”</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">&apos;use strict&apos;;</div><div class="line"> import React from &apos;react&apos;;</div><div class="line"> import &#123;</div><div class="line">   AppRegistry,</div><div class="line">   StyleSheet,</div><div class="line">   Text,</div><div class="line">   View</div><div class="line"> &#125; from &apos;react-native&apos;;</div><div class="line"> class HelloReactNative extends React.Component &#123;</div><div class="line">   render() &#123;</div><div class="line">     return (</div><div class="line">       &lt;View style=&#123;styles.container&#125;&gt;</div><div class="line">         &lt;Text style=&#123;styles.hello&#125;&gt;Hello, ReactNative&lt;/Text&gt;</div><div class="line">       &lt;/View&gt;</div><div class="line">     )</div><div class="line">   &#125;</div><div class="line"> &#125;</div><div class="line"> var styles = StyleSheet.create(&#123;</div><div class="line">   container: &#123;</div><div class="line">     flex: 1,</div><div class="line">     justifyContent: &apos;center&apos;,</div><div class="line">   &#125;,</div><div class="line">   hello: &#123;</div><div class="line">     fontSize: 20,</div><div class="line">     textAlign: &apos;center&apos;,</div><div class="line">     margin: 10,</div><div class="line">   &#125;,</div><div class="line"> &#125;);</div><div class="line"> AppRegistry.registerComponent(&apos;HelloReactNative&apos;, () =&gt; HelloReactNative);</div></pre></td></tr></table></figure>
+<p>6<strong>.配置app下的build.gradle</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">    compileSdkVersion 23</div><div class="line">    buildToolsVersion &apos;25.0.0&apos;</div><div class="line">    defaultConfig &#123;</div><div class="line">        applicationId &quot;com.example.administrator.viewdispachdemo&quot;</div><div class="line">        minSdkVersion 16</div><div class="line">        targetSdkVersion 23</div><div class="line">        versionCode 1</div><div class="line">        versionName &quot;1.0&quot;</div><div class="line">        testInstrumentationRunner &quot;android.support.test.runner.AndroidJUnitRunner&quot;</div><div class="line">        ndk &#123;</div><div class="line">            abiFilters &quot;armeabi-v7a&quot;, &quot;x86&quot;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    packagingOptions &#123;</div><div class="line">        exclude &quot;lib/arm64-v8a&quot;</div><div class="line">    &#125;</div><div class="line">    configurations.all &#123;</div><div class="line">        resolutionStrategy.force &apos;com.google.code.findbugs:jsr305:1.3.9&apos;</div><div class="line">    &#125;</div><div class="line">    buildTypes &#123;</div><div class="line">        release &#123;</div><div class="line">            minifyEnabled false</div><div class="line">            proguardFiles getDefaultProguardFile(&apos;proguard-android.txt&apos;), &apos;proguard-rules.pro&apos;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">dependencies &#123;</div><div class="line">    compile fileTree(dir: &apos;libs&apos;, include: [&apos;*.jar&apos;])</div><div class="line">    compile &apos;com.android.support:appcompat-v7:23.0.1&apos;</div><div class="line">    compile &quot;com.android.support:design:23.0.1&quot;</div><div class="line">    compile &apos;com.android.support.constraint:constraint-layout:1.1.0&apos;</div><div class="line">    compile &apos;com.android.support:support-v4:23.0.1&apos;</div><div class="line">    compile &apos;com.android.support:recyclerview-v7:23.0.1&apos;</div><div class="line">    testCompile &apos;junit:junit:4.12&apos;</div><div class="line">    androidTestCompile &apos;com.android.support.test:runner:1.0.2&apos;</div><div class="line">    androidTestCompile &apos;com.android.support.test.espresso:espresso-core:3.0.2&apos;</div><div class="line">    androidTestCompile &apos;com.android.support:support-annotations:27.1.0&apos;</div><div class="line">    compile &quot;com.facebook.react:react-native:0.55.4&quot;//根据当时最新版本修改</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>7.<strong>配置project下的build.gradle</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">buildscript &#123;</div><div class="line">    repositories &#123;</div><div class="line">        //google()</div><div class="line">        jcenter()</div><div class="line">        maven &#123;</div><div class="line">            url &apos;https://maven.google.com/&apos;</div><div class="line">            name &apos;Google&apos;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    dependencies &#123;</div><div class="line">        //classpath &apos;com.android.tools.build:gradle:3.1.0&apos;</div><div class="line">        classpath &apos;com.android.tools.build:gradle:2.3.0&apos;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">allprojects &#123;</div><div class="line">    repositories &#123;</div><div class="line">        //google()</div><div class="line">        jcenter()</div><div class="line">        maven &#123;</div><div class="line">            // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm</div><div class="line">            url &quot;$rootDir/node_modules/react-native/android&quot;</div><div class="line">        &#125;</div><div class="line">        maven &#123;</div><div class="line">            url &apos;https://maven.google.com/&apos;</div><div class="line">            name &apos;Google&apos;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">task clean(type: Delete) &#123;</div><div class="line">    delete rootProject.buildDir</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>8.<strong>AndroidManifest.xml 添加权限</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;</div><div class="line">&lt;uses-permission android:name=&quot;android.permission.SYSTEM_ALERT_WINDOW&quot;/&gt;</div></pre></td></tr></table></figure>
+<h3 id="代码配置"><a href="#代码配置" class="headerlink" title="代码配置"></a>代码配置</h3><p>1.<strong>修改Application</strong> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">public class MyApplication extends Application implements ReactApplication &#123;</div><div class="line">    private final ReactNativeHost reactNativeHost = new ReactNativeHost(this) &#123;</div><div class="line">        @Override</div><div class="line">        public boolean getUseDeveloperSupport() &#123;</div><div class="line">            return BuildConfig.DEBUG;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        @Override</div><div class="line">        protected List&lt;ReactPackage&gt; getPackages() &#123;</div><div class="line">           return Arrays.&lt;ReactPackage&gt;asList(new MainReactPackage());</div><div class="line">        &#125;</div><div class="line">    &#125;;</div><div class="line">    @Override</div><div class="line">    public ReactNativeHost getReactNativeHost() &#123;</div><div class="line">        return reactNativeHost;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void onCreate() &#123;</div><div class="line">        super.onCreate();</div><div class="line">        SoLoader.init(this, false);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>2.<strong>添加/修改Activity</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">public class MyReactActivity extends ReactActivity&#123;</div><div class="line"></div><div class="line">    @Nullable</div><div class="line">    @Override</div><div class="line">    protected String getMainComponentName() &#123;</div><div class="line">        return &quot;HelloReactNative&quot;;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="运行配置"><a href="#运行配置" class="headerlink" title="运行配置"></a>运行配置</h3><p>1.执行<strong>npm start或react-native start</strong> （如果出现不是内部命令 npm install -g react-native-cli ）</p>
+<p>2.app/src/main下创建assets 文件夹 再执行 命令：</p>
+<p>react-native bundle –platform <strong>android</strong> –dev <strong>false</strong> –entry-file <strong>index.android.js –</strong>bundle-output <strong>android/app/src/main/assets/index.android.bundle</strong> –assets-dest <strong>android/app/src/main/res/</strong></p>
+<p>执行成功后会在该目录下生产两个文件 如图</p>
+<figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2018/6/13/163f4c8a345af12c?w=340&h=432&f=png&s=12478" alt="1528818925956" title="">
+                </div>
+                <div class="image-caption">1528818925956</div>
+            </figure>
+<p>3.如果是<strong>真机</strong>运行，执行<strong>adb reverse tcp:8081 tcp:8081</strong> </p>
+<p>4.Android Studio 点击Run 运行工程（报错不要烦，确保前面每一步都是正确的，再百谷）.<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="https://user-gold-cdn.xitu.io/2018/6/13/163f4ca7e16ccd99?w=278&h=488&f=png&s=8794" alt="1528818925956" title="">
+                </div>
+                <div class="image-caption">1528818925956</div>
+            </figure><br>※以上运行顺序不能反 否则会报错.</p>
+<p>※报错的话试试clean / rebuild </p>
+<p>※后面进行实际开发后再分享吧 这里只是前期的混合植入编译运行.</p>
+<p>※感谢阅读.</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-06-14T02:19:59.696Z" itemprop="dateUpdated">2018-06-14 10:19:59</time>
+</span><br>
+
+
+        
+        这里可以写作者留言，标签和 hexo 中所有变量及辅助函数等均可调用，示例：<a href="/2018/05/15/AS 混合RN编译运行 最新基础教程/" target="_blank" rel="external">http://yoursite.com/2018/05/15/AS 混合RN编译运行 最新基础教程/</a>
+        
+    </div>
+    <footer>
+        <a href="http://yoursite.com">
+            <img src="/img/avatar.jpg" alt="JingYuchun">
+            JingYuchun
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/05/15/AS 混合RN编译运行 最新基础教程/&title=《AS 混合RN编译运行 最新基础教程》 — One Love, One Lifetime&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/05/15/AS 混合RN编译运行 最新基础教程/&title=《AS 混合RN编译运行 最新基础教程》 — One Love, One Lifetime&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/05/15/AS 混合RN编译运行 最新基础教程/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《AS 混合RN编译运行 最新基础教程》 — One Love, One Lifetime&url=http://yoursite.com/2018/05/15/AS 混合RN编译运行 最新基础教程/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/05/15/AS 混合RN编译运行 最新基础教程/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/05/15/2018Android面试笔记(一)/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">2018Android面试笔记(一)</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/04/02/微信小程序零基础入门踩坑之路/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">微信小程序零基础入门踩坑之路</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+<section class="comments" id="comments">
+    <div id="disqus_thread"></div>
+    <script>
+    var disqus_shortname = 'true';
+    lazyScripts.push('//' + disqus_shortname + '.disqus.com/embed.js')
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+
+<section class="comments" id="comments">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script src="http://v2.uyan.cc/code/uyan.js?uid=true"></script>
+    <!-- UY END -->
+</section>
+
+
+
+
+<section class="comments" id="comments">
+    <div id="gitment_thread"></div>
+    <link rel="stylesheet" href="//unpkg.com/gitment/style/default.css">
+    <script src="//unpkg.com/gitment/dist/gitment.browser.js"></script>
+    <script>
+        var gitment = new Gitment({
+            owner: '',
+            repo: '',
+            oauth: {
+                client_id: '',
+                client_secret: '',
+            },
+        })
+        gitment.render('comments')
+    </script>
+</section>
+
+
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢大爷~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/img/wechat.jpg" alt="打赏二维码">
+        </div>
+        
+        <label class="reward-toggle">
+            <input id="rewardToggle" type="checkbox" class="reward-toggle-check"
+                data-wechat="/img/wechat.jpg" data-alipay="/img/alipay.jpg">
+            <div class="reward-toggle-ctrol">
+                <span class="reward-toggle-item wechat">微信</span>
+                <span class="reward-toggle-label"></span>
+                <span class="reward-toggle-item alipay">支付宝</span>
+            </div>
+        </label>
+        
+    </div>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>JingYuchun &copy; 2017 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2018/05/15/AS 混合RN编译运行 最新基础教程/&title=《AS 混合RN编译运行 最新基础教程》 — One Love, One Lifetime&pic=http://yoursite.com/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2018/05/15/AS 混合RN编译运行 最新基础教程/&title=《AS 混合RN编译运行 最新基础教程》 — One Love, One Lifetime&source=" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2018/05/15/AS 混合RN编译运行 最新基础教程/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《AS 混合RN编译运行 最新基础教程》 — One Love, One Lifetime&url=http://yoursite.com/2018/05/15/AS 混合RN编译运行 最新基础教程/&via=http://yoursite.com" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2018/05/15/AS 混合RN编译运行 最新基础教程/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACr0lEQVR42u3aQW4cMQwEQP//0w4Q5JbsuJuU1g5QOhkDr4alw4gg+fERr8/f6/nJ388/4/X82+c3Hlh4eHh4o9DzF+ehPFNfxdDu/7wzHh4e3j3e7BOf7NNeGDk4ucDw8PDwvpfXhp5fP8n+eHh4eP8jb/OxzpPyNuHGw8PD+y5enuDOUuq2ypoc6+FaCx4eHt4kd40aYD/h74v9PTw8PLxFV31WLMgT5QQwG0T48ys8PDy8C7zNQNWsiDArT6xGsvDw8PCu8ZKN2jLurPy6P8R/XAx4eHh4h3h5sru5QpLG2GZ04OWFgYeHh3eB1/7r/iCKsB6fF8MHeHh4eNd47TUwHIGKhwba2D7yWwUPDw9vwUs2TRLifRrdtsqinfHw8PAu8M4OXT2z80Nsiw4H5s7w8PDwSt5+iyT0vJE2S+hfXgl4eHh4R3n5R7y9NpKdZ8g8Ejw8PLzbvPb1yWDWLJneFDiKOjEeHh7eiHd2BKo9rHwEIbke8PDw8N7Dy1tcswZ/W+rNy77RYAEeHh7eNV7ygrZ029aS20iKMi4eHh7eG3n7VPvsSEEbMx4eHt57eO0gVJ6I7wvHB2Yi8PDw8C7wEkxSdMgLFpvm2RfHjYeHh3eBlzTy88tgVj7IxwKSJBsPDw/vNu9sWys/rNlwQFscwcPDw7vH27SvNiNWmzLHqoyLh4eHt+BthpzaRHmWoOeJ9UsLHh4e3lHe7LPeNrf2Awd5ql0HioeHh7fmzUJsx7bywvEmrcfDw8O7wcvXrOU/S7JvJOV4eHh4Z3ltWC27Hb1qd/7iSsDDw8O7xss777P0Ogl9NlKAh4eH95N5+ac/b1/Ncv/iOPDw8PB+AG/zZJZ8bxJuPDw8vHu8fKCqbVm1sLx4gYeHh/ddvOFIU5mCJ6HnB3d44eHh4aXrF8DaSt+EOM+qAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+lazyScripts.push('//s95.cnzz.com/z_stat.php?id=true&web_id=true')
+
+</script>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/main.min.js"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="//unpkg.com/hexo-theme-material-indigo@latest/js/search.min.js" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+<script>
+(function() {
+    var OriginTitile = document.title, titleTime;
+    document.addEventListener('visibilitychange', function() {
+        if (document.hidden) {
+            document.title = '死鬼去哪里了！';
+            clearTimeout(titleTime);
+        } else {
+            document.title = '(つェ⊂)咦!又好了!';
+            titleTime = setTimeout(function() {
+                document.title = OriginTitile;
+            },2000);
+        }
+    });
+})();
+</script>
+
+
+
+</body>
+</html>
